@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "304969185864",
+    "project_id": "sfua-4435d",
+    "storage_bucket": "sfua-4435d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304969185864:android:f335c405afde55e271367d",
+        "android_client_info": {
+          "package_name": "com.alicearnautova"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304969185864-phpoohgga8nh3lnq97m5uqn55jco9qgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSVukHLzkgTU1kSQP8RT2CHsf0ooaQOMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304969185864-phpoohgga8nh3lnq97m5uqn55jco9qgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
