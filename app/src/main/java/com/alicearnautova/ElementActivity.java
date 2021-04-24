@@ -3,7 +3,9 @@ package com.alicearnautova;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +20,14 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 
-public class ElementActivity extends AppCompatActivity {
+public class ElementActivity extends AppCompatActivity{
 
     String selected;
     WebView webView;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     StorageReference pathReference;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,9 @@ public class ElementActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         selected = i.getStringExtra("ElementTitle");
+
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         webView = findViewById(R.id.web_view);
 
@@ -57,6 +63,7 @@ public class ElementActivity extends AppCompatActivity {
                     webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 
                     webView.loadUrl("file:///" + localFile.getPath());
+                    progressBar.setVisibility(View.GONE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
