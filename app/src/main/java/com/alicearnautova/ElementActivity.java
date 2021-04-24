@@ -37,6 +37,13 @@ public class ElementActivity extends AppCompatActivity{
         Intent i = getIntent();
         selected = i.getStringExtra("ElementTitle");
 
+        if(selected.trim().equals("Презентации институтов")){
+
+            Intent f = new Intent(ElementActivity.this, PresentationsActivity.class);
+            startActivity(f);
+
+        }
+
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 

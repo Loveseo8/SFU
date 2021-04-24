@@ -1,19 +1,14 @@
 package com.alicearnautova;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,7 +31,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class MainActivity extends AppCompatActivity {
+public class PresentationsActivity extends AppCompatActivity {
 
     ListView listView;
     ListViewAdapter adapter;
@@ -48,13 +43,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.presentations_activity);
 
-        pathReference = storageRef.child("List.xml");
+        getSupportActionBar().setTitle("Презентации институтов");
+
+        pathReference = storageRef.child("Presentations.xml");
 
         final File localFile;
         try {
-            localFile = File.createTempFile("List", ".xml");
+            localFile = File.createTempFile("Presentations", ".xml");
 
             pathReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
@@ -103,20 +100,14 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         listView = findViewById(R.id.list_view);
         adapter = new ListViewAdapter(this, elements);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(MainActivity.this, ElementActivity.class);
-                i.putExtra("ElementTitle", elements.get(position));
+                Intent i = new Intent(PresentationsActivity.this, ShowPresentationActivity.class);
+                i.putExtra("PresentationTitle", elements.get(position));
                 startActivity(i);
             }
         });
