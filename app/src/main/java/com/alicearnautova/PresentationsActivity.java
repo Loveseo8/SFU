@@ -47,21 +47,23 @@ public class PresentationsActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Презентации институтов");
 
-        pathReference = storageRef.child("Presentations.xml");
 
-        final File localFile;
+        DocumentBuilder documentBuilder = null;
         try {
-            localFile = File.createTempFile("Presentations", ".xml");
+            documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        Document document = null;
+        try {
+            document = documentBuilder.parse(getAssets().open("Presentations.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
 
-            pathReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
-                    try {
-                        DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-                        Document document = documentBuilder.parse(localFile);
-
-                        Node root = document.getDocumentElement();
+        Node root = document.getDocumentElement();
                         NodeList tasks = root.getChildNodes();
                         for (int i = 0; i < tasks.getLength(); i++) {
                             Node task = tasks.item(i);
@@ -77,28 +79,6 @@ public class PresentationsActivity extends AppCompatActivity {
                                 }
                             }
                         }
-
-                    } catch (ParserConfigurationException ex) {
-                        ex.printStackTrace(System.out);
-                    } catch (SAXException ex) {
-                        ex.printStackTrace(System.out);
-                    } catch (IOException ex) {
-                        ex.printStackTrace(System.out);
-                    }
-                }
-
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                }
-            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         listView = findViewById(R.id.list_view);
         adapter = new ListViewAdapter(this, elements);

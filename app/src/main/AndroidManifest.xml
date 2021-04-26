@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ShowPresentationActivity">
+        <activity android:name=".ShowPresentationActivity"
+            android:parentActivityName=".PresentationsActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
