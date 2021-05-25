@@ -31,8 +31,6 @@ public class PresentationsActivity extends AppCompatActivity {
     ListViewAdapter adapter;
     List<String> elements = new ArrayList<>();
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReference();
-    StorageReference pathReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
