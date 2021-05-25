@@ -30,7 +30,6 @@ public class PresentationsActivity extends AppCompatActivity {
     ListView listView;
     ListViewAdapter adapter;
     List<String> elements = new ArrayList<>();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
