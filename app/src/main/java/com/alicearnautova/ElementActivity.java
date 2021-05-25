@@ -3,6 +3,7 @@ package com.alicearnautova;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
@@ -67,6 +68,9 @@ public class ElementActivity extends AppCompatActivity{
                     webView.getSettings().setDomStorageEnabled(true);
                     webView.getSettings().setAllowFileAccessFromFileURLs(true);
                     webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+                    webView.getSettings().setBuiltInZoomControls(true);
+                    webView.getSettings().setLoadWithOverviewMode(true);
+                    webView.getSettings().setUseWideViewPort(true);
 
                     webView.loadUrl("file:///" + localFile.getPath());
                     progressBar.setVisibility(View.GONE);
